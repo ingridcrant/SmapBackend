@@ -17,7 +17,7 @@ building_to_info = {}
 
 @app.route('/getbuildinginfo', methods=['GET'])
 def get_building_info():
-    return building_to_info
+    return jsonify(building_to_info)
 
 @app.route('/postbuildinginfo', methods=['POST'])
 def post_building_info():
@@ -42,5 +42,6 @@ def updatebuildinginfo():
     
     return jsonify({"success": True}), 200
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True, port=os.environ.get('PORT', 80))
+if __name__ == '__main__':
+    # Threaded option to enable multiple instances for multiple user access support
+    app.run(threaded=True, port=5000)
